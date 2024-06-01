@@ -1,0 +1,1 @@
+{"version":3,"file":"invokeOrFail.js","sourceRoot":"","sources":["../../src/lib/invokeOrFail.ts"],"names":[],"mappings":";;;AAEA,SAAgB,YAAY,CAAqB,UAAmB;IAEhE,IAAI;QAEA,MAAM,MAAM,GAAG,UAAU,EAAE,CAAC;QAE5B,OAAO,CAAC,SAAS,EAAE,MAAW,CAAC,CAAC;KAEnC;IAAC,OAAO,CAAC,EAAE;QAER,OAAO,CAAC,CAAM,CAAC,CAAC;KAEnB;AAEL,CAAC;AAdD,oCAcC"}
