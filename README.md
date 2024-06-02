@@ -1,33 +1,23 @@
-# express-typed-rpc
+# rtype
 
 WARNING! This repo is still a work in progress. Please contribute if you're interested ❤️
 
-[![build status](https://github.com/mhweiner/express-typed-rpc/actions/workflows/release.yml/badge.svg)](https://github.com/mhweiner/express-typed-rpc/actions)
+[![build status](https://github.com/aeroview/rtype/actions/workflows/release.yml/badge.svg)](https://github.com/mhweiner/express-typed-rpc/actions)
 [![semantic-release](https://img.shields.io/badge/semantic--release-e10079?logo=semantic-release)](https://github.com/semantic-release/semantic-release)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 [![SemVer](https://img.shields.io/badge/SemVer-2.0.0-blue)]()
 
-Simple express middleware to easily create a fully-typed JSON API over HTTP on both the server-side and client-side.  This project is inspired by tRPC, but much simpler.
+Simple and extensible runtime input validation for TS/JS, written in TS.
 
-**Crazy Simple and Easy to Use 😃**
-
-- Works out of the box with express and Typescript
-- No magic or black boxes
-- No code generation or build steps! Works 100% statically via Typescript's `infer` keyword
-- No writing type specifications
-- Minimal configuration
-- Client included!
-- Tiny codebase (~50LOC) with minimal dependencies. Written in clean, simple Typescript. Contribute or fork and make it your own.
-
-**Make Your Code More Reliable and Go Faster! 🚀**
-
-- Take advantage of Typescript and turn your runtime errors into compiler-time errors! Inputs and outputs are both fully typed.
-- Easily unit-test your express handlers since they are now no longer dependent on `req` and `res`
+- Native Typescript support
+- No dependencies
+- Extensible
+- Much faster than joi, yup, and zod (will provide benchmarks soon)
 
 ## Installation
 
 ```bash
-npm i express-typed-rpc
+npm i @aeroview-io/rtype
 ```
  
 ## Example Usage

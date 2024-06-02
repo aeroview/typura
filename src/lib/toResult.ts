@@ -1,11 +1,10 @@
 export type Result<E, T> = [E] | [undefined, T];
-export type PromiseResult<E, T> = Promise<Result<E, T>>;
 
-export default async function toResult<E extends Error, T>(p: Promise<T>): PromiseResult<E, T> {
+export function toResult<E extends Error, T>(executable: () => T): Result<E, T> {
 
     try {
 
-        const result = await p;
+        const result = executable();
 
         return [undefined, result as T];
 

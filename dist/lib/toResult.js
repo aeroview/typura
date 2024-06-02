@@ -1,13 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-async function toResult(p) {
+exports.toResult = void 0;
+function toResult(executable) {
     try {
-        const result = await p;
+        const result = executable();
         return [undefined, result];
     }
     catch (e) {
         return [e];
     }
 }
-exports.default = toResult;
+exports.toResult = toResult;
 //# sourceMappingURL=toResult.js.map

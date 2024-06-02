@@ -1,0 +1,14 @@
+{
+    "include": [
+      "src/**/*.ts"
+    ],
+    "exclude": [
+      "**/*.spec.ts",
+      "**/*.spec.js"
+    ],
+    "reporter": [],
+    "all": true,
+    "cache": false,
+    "clean": true
+  }
+  
