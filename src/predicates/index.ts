@@ -5,3 +5,6 @@ export * from './optional';
 export * from './string';
 export * from './number';
 export * from './boolean';
+export * from './email';
+export * from './url';
+export * from './password';
