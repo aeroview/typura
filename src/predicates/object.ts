@@ -1,11 +1,13 @@
-import {InferObj, Pred, ValidationError} from '..';
+import {InferShape, Pred, ValidationError} from '..';
 import {toResult} from '../lib/toResult';
 
-export function object<T extends Record<string, Pred<any>>>(schema: T): Pred<InferObj<T>> {
+export function object
+<T extends Record<string, Pred<any>>>(schema: T):
+Pred<InferShape<T>> {
 
     if (typeof schema !== 'object') throw new Error('invalid schema, must be object');
 
-    return (value: unknown): value is InferObj<T> => {
+    return (value: unknown): value is InferShape<T> => {
 
         if (typeof value !== 'object' || !value) {
 

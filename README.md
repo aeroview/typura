@@ -7,18 +7,18 @@
 
 Simple and extensible runtime input validation for TS/JS, written in TS.
 
-🚀 Fast performance
+🚀 Fast & reliable performance
 
 - Faster than joi, yup, and zod (benchmarks coming soon)
 - Only 4.7KB gzipped (entire package, without tree-shaking)
 - Supports tree-shaking via ES Modules so you only bundle what you use
 - No dependencies
+- 100% test coverage
 
 😀 User-friendly & defensive
 
 - Native Typescript support
 - Easy-to-use declarative & functional API
-- Easily create custom validators
 - Client-friendly, structured error messages
 - Works great on the server and in the browser
 - Composable and extensible, based around the concept of "predicates"
