@@ -1,0 +1,14 @@
+# Exclude all .spec.js files
+*.spec.js
+*.spec.d.ts
+*.map
+
+# Exclude test directories
+tests/
+__tests__/
+
+# Exclude other unnecessary files
+.git
+.github
+node_modules
+*.log
