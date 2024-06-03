@@ -2,24 +2,6 @@
   "name": "@aeroview-io/rtype",
   "version": "0.0.0-dev",
   "description": "Simple and extensible runtime input validation for TS/JS, written in TS.",
-  "license": "MIT",
-  "author": "Marc H. Weiner <marc@aeroview.io> (https://aeroview.io)",
-  "files": [
-    "dist",
-    "package.json",
-    "package-lock.json"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/aeroview/rtype.git"
-  },
-  "scripts": {
-    "prepare": "npm run build",
-    "test": "c8 hoare 'src/**/*.spec.ts' && c8 report -r text -r html",
-    "lint": "eslint ./ --ext .js,.ts",
-    "build": "tsc"
-  },
-  "homepage": "https://github.com/aeroview/rtype",
   "keywords": [
     "joi",
     "zod",
@@ -31,6 +13,32 @@
     "typescript",
     "javascript"
   ],
+  "sponsor": {
+    "url": "https://aeroview.io"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aeroview/rtype.git"
+  },
+  "homepage": "https://github.com/aeroview/rtype",
+  "license": "MIT",
+  "author": "Marc H. Weiner <marc@aeroview.io> (https://aeroview.io)",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist",
+    "package.json",
+    "package-lock.json"
+  ],
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "prepare": "npm run build",
+    "test": "c8 hoare 'src/**/*.spec.ts' && c8 report -r text -r html",
+    "lint": "eslint ./ --ext .js,.ts",
+    "build": "tsc"
+  },
   "devDependencies": {
     "c8": "^9.1.0",
     "hoare": "^3.0.17",
