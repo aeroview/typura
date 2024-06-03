@@ -35,8 +35,6 @@ jobs:
         run: npm run lint
       - name: Unit tests
         run: npm test
-      - name: Build for package
-        run: npm run build-package
       - name: Run semantic-release
         run: npx semantic-release
         env:
