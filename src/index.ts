@@ -22,4 +22,4 @@ export type InferObj<T> = {
     [K in keyof T]: (value: unknown) => value is T;
 };
 
-export * as predicates from './predicates'
+export * as predicates from './predicates';
