@@ -28,8 +28,12 @@
   },
   "files": [
     "dist",
+    "!dist/**/*.map",
+    "!dist/**/*.spec.*",
     "package.json",
-    "package-lock.json"
+    "package-lock.json",
+    "README.md",
+    "LICENSE"
   ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
