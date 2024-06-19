@@ -1,7 +1,7 @@
 <picture>
     <source srcset="docs/rtype.svg" media="(prefers-color-scheme: dark)">
     <source srcset="docs/rtype-dark.svg" media="(prefers-color-scheme: light)">
-    <img src="docs/rtype-dark.svg" alt="Logo" style="max-width: 400px;margin: 0 0 10px">
+    <img src="docs/rtype-dark.svg" alt="Logo" style="margin: 0 0 10px">
 </picture>
 
 ---
@@ -266,7 +266,7 @@ npm test
 
 <p><picture>
     <source srcset="docs/aeroview-logo-lockup.svg" media="(prefers-color-scheme: dark)">
-    <source srcset="docs//aeroview-logo-lockup-dark.svg" media="(prefers-color-scheme: light)">
+    <source srcset="docs/aeroview-logo-lockup-dark.svg" media="(prefers-color-scheme: light)">
     <img src="docs//aeroview-logo-lockup-dark.svg" alt="Logo" style="max-width: 150px;margin: 0 0 10px">
 </picture></p>
 
