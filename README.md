@@ -105,6 +105,44 @@ import {email} from '@aeroview-io/rtype/dist/predicates';
 const isEmail = email();
 ```
 
+## Nested objects
+
+You can nest objects by using the `object` predicate. This allows you to create complex validation rules for nested objects. The `ValidationError` object will be flattened to include the nested object keys with a dot separator.
+
+```typescript
+import {predicates as p, Infer} from '@aeroview-io/rtype';
+
+const validator = p.object({
+    email: p.email(),
+    address: p.object({
+        line1: p.string(),
+        line2: p.optional(p.string()),
+        street: p.string(),
+        state: p.string(),
+        city: p.string({len: {min: 2, max: 2}}),
+        zip: p.string(),
+    })
+});
+
+type User = Infer<typeof validator>; // {email: string, address: {line1: string, line2?: string, street: string, city: string, zip: string}}
+
+validator({
+    email: 'blah',
+    address: {}
+});
+
+/* The above throws ValidationError: 
+{
+    email: 'must be a valid email address',
+    'address.line1': 'must be a string',
+    'address.street': 'must be a string',
+    'address.state': 'must be a string',
+    'address.city': 'must be between 2 and 2 characters long', // Yeah, we should probably fix this :)
+    'address.zip': 'must be a string',
+}
+*/
+```
+
 ## Type API
 
 ### `Infer<T>`
