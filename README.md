@@ -1,7 +1,7 @@
 <picture>
-    <source srcset="docs/r-type.svg" media="(prefers-color-scheme: dark)">
-    <source srcset="docs/r-type.svg" media="(prefers-color-scheme: light)">
-    <img src="docs/r-type.svg" alt="Logo" style="max-width: 400px;margin: 0 0 10px">
+    <source srcset="docs/rtype.svg" media="(prefers-color-scheme: dark)">
+    <source srcset="docs/rtype-dark.svg" media="(prefers-color-scheme: light)">
+    <img src="docs/rtype-dark.svg" alt="Logo" style="max-width: 400px;margin: 0 0 10px">
 </picture>
 
 ---
