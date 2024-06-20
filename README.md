@@ -41,6 +41,7 @@ npm i @aeroview-io/rtype
 ## Table of contents
 
 - [Example usage](#example-usage)
+- [Another example using the "Result" pattern](#another-example-using-the-result-pattern)
 - [Taking advantage of tree-shaking](#taking-advantage-of-tree-shaking)
 - [Nested objects](#nested-objects)
 - [Type API](#type-api)
@@ -92,7 +93,7 @@ const input = {
     name: 'John Doe',
     favoriteColor: 'red',
     mustBe42: 42,
-} as unknown; // unknown type to simulate user input
+} as unknown; // unknown type to simulate unknown user input
 
 try {
 
@@ -112,6 +113,29 @@ try {
     }
 
     throw e; // don't forget to rethrow your unhanded errors!
+}
+```
+
+## Another example using the "Result" pattern
+
+```typescript
+import {toResult} from '@aeroview-io/rtype/dist/lib/toResult';
+import {predicates as p, ValidationError} from '@aeroview-io/rtype';
+
+const validator = p.object({
+    email: p.email(),
+    password: p.password(),
+});
+
+const input = {
+    email: '',
+    password: '',
+} as unknown; // unknown type to simulate user input
+
+const [err] = toResult(() => validator(input));
+
+if (err instanceof ValidationError) {
+    console.log(err.messages); // {email: 'must be a valid email address', password: 'must include at least one uppercase letter'}
 }
 ```
 
@@ -169,7 +193,7 @@ validator({
 
 ### `Infer<T>`
 
-Infer is a utility type that extracts the type of the input from a predicate function.
+Infer is a utility type that extracts the type of the input from a predicate function. See the [example above](#example-usage) for usage.
 
 ### `Pred<T>` 
 
