@@ -333,7 +333,11 @@ try {
 
 ## Contribution
 
-Please contribute to this project! Issue a PR against `main` and request review. Specifically, it would be great if you could help add predicates for common use-cases.
+Please contribute to this project! We welcome all contributions. Here's how you can help:
+
+- Submit an issue with a feature request or bug report.
+- Issue a PR against `main` and request review.
+- Ask/answer questions in the discussions section.
 
 Before you submit a PR, please make sure to do the following:
 
