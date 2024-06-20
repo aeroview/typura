@@ -41,12 +41,11 @@ npm i @aeroview-io/rtype
 ## Table of contents
 
 - [Example usage](#example-usage)
-- [Another example using the "Result" pattern](#another-example-using-the-result-pattern)
+- [The "Result" pattern](#another-example-using-the-result-pattern)
 - [Taking advantage of tree-shaking](#taking-advantage-of-tree-shaking)
 - [Nested objects](#nested-objects)
 - [Type API](#type-api)
 - [Predicate API](#predicate-api)
-- [Error handling](#error-handling)
 - [Contribution](#contribution)
 - [Sponsorship](#get-better-observability-with-aeroview)
  
@@ -87,6 +86,8 @@ validator({
 }
 */
 
+/* demonstrating type narrowing */
+
 const input = {
     email: 'john@smith.com',
     password: 'Password1$',
@@ -96,22 +97,14 @@ const input = {
 } as unknown; // unknown type to simulate unknown user input
 
 try {
-
     if (validator(input)) {
-
         // input is now typed as User
         input.favoriteColor; // FavoriteColor
-
     }
-
 } catch (e) {
-
     if (e instanceof ValidationError) {
-
-        console.log(e.messages); // {}
-
+        console.log(e.messages);
     }
-
     throw e; // don't forget to rethrow your unhanded errors!
 }
 ```
@@ -129,7 +122,7 @@ const validator = p.object({
 const input = {
     email: '',
     password: '',
-} as unknown; // unknown type to simulate user input
+}
 
 const [err] = toResult(() => validator(input));
 
@@ -299,50 +292,6 @@ const isSchoolEmail = chain(
     email(), 
     custom((input: string) => /.+[.edu]$/.test(input), 'must be a school email')
 );
-```
-
-## Error handling
-
-When a predicate fails, it throws a `ValidationError` with a structured error message. It has a `messages` property that contains the error messages for each key that failed validation, and is of type `Record<string, string>`.
-
-Example:
-
-```typescript
-import {predicates as p, ValidationError} from '@aeroview-io/rtype';
-
-const validator = p.object({
-    email: p.email(),
-    password: p.password(),
-});
-
-try {
-    validator({
-        email: 'oopsie',
-        password: 'password',
-    });
-} catch (e) {
-    if (e instanceof ValidationError) {
-        console.log(e.messages); // {email: 'must be a valid email address'}
-    }
-    throw e; // don't forget to rethrow your unhanded errors!
-}
-```
-
-If you use a predicate that isn't an object, the value of the key will be 'root'. Example:
-
-```typescript
-import {predicates as p, ValidationError} from '@aeroview-io/rtype';
-
-const validator = p.email();
-
-try {
-    validator('oopsie');
-} catch (e) {
-    if (e instanceof ValidationError) {
-        console.log(e.messages); // {root: 'must be a valid email address'}
-    }
-    throw e; // don't forget to rethrow your unhanded errors!
-}
 ```
 
 ## Contribution
