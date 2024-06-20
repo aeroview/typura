@@ -360,7 +360,7 @@ npm test
 <picture>
     <source srcset="docs/aeroview-logo-lockup.svg" media="(prefers-color-scheme: dark)">
     <source srcset="docs/aeroview-logo-lockup-dark.svg" media="(prefers-color-scheme: light)">
-    <img src="docs//aeroview-logo-lockup-dark.svg" alt="Logo" style="max-width: 150px;margin: 0 0 10px">
+    <img src="docs/aeroview-logo-lockup-dark.svg" alt="Logo" style="max-width: 150px;margin: 0 0 10px">
 </picture>
 
 Aeroview is a developer-friendly, AI-powered observability platform that helps you monitor, troubleshoot, and optimize your applications. Get started for free at [https://aeroview.io](https://aeroview.io).
