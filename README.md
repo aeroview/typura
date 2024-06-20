@@ -105,7 +105,7 @@ import {email} from '@aeroview-io/rtype/dist/predicates';
 const isEmail = email();
 ```
 
-## Nested objects
+## Nested objects 
 
 You can nest objects by using the `object` predicate. This allows you to create complex validation rules for nested objects. The `ValidationError` object will be flattened to include the nested object keys with a dot separator.
 
