@@ -336,7 +336,7 @@ Please contribute to this project! We welcome all contributions. Here's how you 
 
 - Submit an issue with a feature request or bug report.
 - Issue a PR against `main` and request review.
-- Ask/answer questions in the discussions section.
+- Ask/answer questions in the Issues/PR's.
 
 Before you submit a PR, please make sure to do the following:
 
