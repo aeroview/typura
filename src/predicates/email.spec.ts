@@ -4,14 +4,6 @@ import {ValidationError} from '..';
 import {removeStackFromErr} from '../lib/removeStackFromErr';
 import {email} from './email';
 
-test('should return a predicate', (assert) => {
-
-    const pred = email();
-
-    assert.equal(typeof pred, 'function');
-
-});
-
 test('pred should return true for valid emails', (assert) => {
 
     const pred = email();

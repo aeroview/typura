@@ -4,14 +4,6 @@ import {toResult} from '../lib/toResult';
 import {ValidationError} from '..';
 import {removeStackFromErr} from '../lib/removeStackFromErr';
 
-test('should return a predicate', (assert) => {
-
-    const pred = string();
-
-    assert.equal(typeof pred, 'function');
-
-});
-
 test('should return true for valid strings', (assert) => {
 
     const pred = string();

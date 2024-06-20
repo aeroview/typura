@@ -6,14 +6,6 @@ import {custom} from './custom';
 import {toResult} from '../lib/toResult';
 import {removeStackFromErr} from '../lib/removeStackFromErr';
 
-test('should return a predicate', (assert) => {
-
-    const pred = chain();
-
-    assert.equal(typeof pred, 'function');
-
-});
-
 test('pred should return true for empty chain', (assert) => {
 
     const pred = chain();

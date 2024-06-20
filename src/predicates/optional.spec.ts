@@ -4,14 +4,6 @@ import {string} from './string';
 import {object} from './object';
 import {Infer} from '..';
 
-test('should return predicate', (assert) => {
-
-    const pred = optional(string());
-
-    assert.equal(typeof pred, 'function');
-
-});
-
 test('pred should make wrapped pred optional', (assert) => {
 
     const pred = optional(string());

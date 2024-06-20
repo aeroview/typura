@@ -4,15 +4,7 @@ import {toResult} from '../lib/toResult';
 import {ValidationError} from '..';
 import {removeStackFromErr} from '../lib/removeStackFromErr';
 
-test('should return a predicate', (assert) => {
-
-    const pred = number();
-
-    assert.equal(typeof pred, 'function');
-
-});
-
-test('should return true for valid numbers', (assert) => {
+test('pred should return true for valid numbers', (assert) => {
 
     const pred = number();
 
@@ -20,7 +12,7 @@ test('should return true for valid numbers', (assert) => {
 
 });
 
-test('should throw ValidationError for non-numbers', (assert) => {
+test('pred should throw ValidationError for non-numbers', (assert) => {
 
     const pred = number();
 
@@ -34,7 +26,7 @@ test('should throw ValidationError for non-numbers', (assert) => {
 });
 
 
-test('should return true if number inside range', (assert) => {
+test('pred should return true if number inside range', (assert) => {
 
     const pred = number({range: {min: 5, max: 8}});
 
@@ -42,7 +34,7 @@ test('should return true if number inside range', (assert) => {
 
 });
 
-test('should throw ValidationError if outside range', (assert) => {
+test('pred should throw ValidationError if outside range', (assert) => {
 
     const pred = number({range: {min: 5, max: 8}});
 
@@ -55,7 +47,7 @@ test('should throw ValidationError if outside range', (assert) => {
 
 });
 
-test('should throw ValidationError if too large', (assert) => {
+test('pred should throw ValidationError if too large', (assert) => {
 
     const pred = number({range: {min: 5, max: 8}});
 

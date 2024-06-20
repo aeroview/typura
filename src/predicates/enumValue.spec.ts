@@ -13,14 +13,6 @@ const expectedErr = removeStackFromErr(new ValidationError({
     root: 'must be a valid enum value',
 }));
 
-test('should return a predicate', (assert) => {
-
-    const pred = enumValue(TestEnum);
-
-    assert.equal(typeof pred, 'function');
-
-});
-
 test('pred should return true if value is a valid value of the enum', (assert) => {
 
     const pred = enumValue(TestEnum);

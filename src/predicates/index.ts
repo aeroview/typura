@@ -8,3 +8,5 @@ export * from './boolean';
 export * from './email';
 export * from './url';
 export * from './password';
+export * from './enumValue';
+export * from './uuid';

@@ -7,16 +7,8 @@ import {number} from './number';
 import {string} from './string';
 import {optional} from './optional';
 
-test('should return a predicate', (assert) => {
-
-    const pred = object({});
-
-    assert.equal(typeof pred, 'function');
-
-});
-
 // eslint-disable-next-line max-lines-per-function
-test('should return true if all predicates pass', (assert) => {
+test('pred should return true if all predicates pass', (assert) => {
 
     // simple
     const pred = object({
@@ -55,7 +47,7 @@ test('should return true if all predicates pass', (assert) => {
 
 });
 
-test('should throw ValidationError with both errors if both fail', (assert) => {
+test('pred should throw ValidationError with both errors if both fail', (assert) => {
 
     const pred = object({
         name: string(),
@@ -75,7 +67,7 @@ test('should throw ValidationError with both errors if both fail', (assert) => {
 
 });
 
-test('should throw if non-object passed as schema', (assert) => {
+test('pred should throw if non-object passed as schema', (assert) => {
 
     assert.equal(
         // @ts-ignore
@@ -85,7 +77,7 @@ test('should throw if non-object passed as schema', (assert) => {
 
 });
 
-test('should throw if non-object passed to pred as value', (assert) => {
+test('pred should throw if non-object passed to pred as value', (assert) => {
 
     const pred = object({
         name: string(),

@@ -4,14 +4,6 @@ import {removeStackFromErr} from '../lib/removeStackFromErr';
 import {ValidationError} from '..';
 import {toResult} from '../lib/toResult';
 
-test('should return a predicate', (assert) => {
-
-    const pred = uuid();
-
-    assert.equal(typeof pred, 'function');
-
-});
-
 test('pred should return true if value is a valid uuid', (assert) => {
 
     const pred = uuid();

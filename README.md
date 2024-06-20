@@ -286,6 +286,21 @@ Returns a predicate that checks if the input is a value of the specified enum.
 
 Returns a predicate that checks if the input passes a custom function.
 
+### `chain<T>(...predicates: Pred<T>[]): Pred<T>`
+
+Returns a predicate that chains multiple predicates together. The input must pass all predicates. Predicates are checked in order. If a predicate fails, the rest of the predicates are not checked. Predicates must be of the same type `T`.
+
+Example:
+
+```typescript
+import {chain, email, custom} from '@aeroview-io/rtype/dist/predicates';
+
+const isSchoolEmail = chain(
+    email(), 
+    custom((input: string) => /.+[.edu]$/.test(input), 'must be a school email')
+);
+```
+
 ## Error handling
 
 When a predicate fails, it throws a `ValidationError` with a structured error message. It has a `messages` property that contains the error messages for each key that failed validation, and is of type `Record<string, string>`.

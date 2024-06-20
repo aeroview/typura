@@ -4,14 +4,6 @@ import {ValidationError} from '..';
 import {custom} from './custom';
 import {removeStackFromErr} from '../lib/removeStackFromErr';
 
-test('should return a predicate', (assert) => {
-
-    const pred = custom(() => true, 'always true');
-
-    assert.equal(typeof pred, 'function');
-
-});
-
 test('pred should return true if wrapped pred returns true', (assert) => {
 
     assert.equal(custom(() => true, 'always true')(true), true);

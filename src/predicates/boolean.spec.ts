@@ -4,13 +4,6 @@ import {ValidationError} from '..';
 import {boolean} from './boolean';
 import {removeStackFromErr} from '../lib/removeStackFromErr';
 
-test('should return a predicate', (assert) => {
-
-    const pred = boolean();
-
-    assert.equal(typeof pred, 'function');
-
-});
 
 test('pred should return true for booleans', (assert) => {
 

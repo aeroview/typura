@@ -4,14 +4,6 @@ import {ValidationError} from '..';
 import {removeStackFromErr} from '../lib/removeStackFromErr';
 import {url} from './url';
 
-test('should return a predicate', (assert) => {
-
-    const pred = url();
-
-    assert.equal(typeof pred, 'function');
-
-});
-
 test('pred should return true for valid urls (no localhost)', (assert) => {
 
     const pred = url();

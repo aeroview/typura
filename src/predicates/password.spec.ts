@@ -4,14 +4,6 @@ import {ValidationError} from '..';
 import {removeStackFromErr} from '../lib/removeStackFromErr';
 import {password} from './password';
 
-test('should return a predicate', (assert) => {
-
-    const pred = password();
-
-    assert.equal(typeof pred, 'function');
-
-});
-
 test('pred should return true for valid passwords', (assert) => {
 
     const pred = password();
