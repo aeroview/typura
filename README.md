@@ -37,6 +37,17 @@ Simple and extensible runtime input validation for TS/JS, written in TS. Sponsor
 ```bash
 npm i @aeroview-io/rtype
 ```
+
+## Table of contents
+
+- [Example usage](#example-usage)
+- [Taking advantage of tree-shaking](#taking-advantage-of-tree-shaking)
+- [Nested objects](#nested-objects)
+- [Type API](#type-api)
+- [Predicate API](#predicate-api)
+- [Error handling](#error-handling)
+- [Contribution](#contribution)
+- [Sponsorship](#get-better-observability-with-aeroview)
  
 ## Example usage
 
@@ -75,8 +86,6 @@ validator({
 }
 */
 
-// Using the validator as a type guard
-
 const input = {
     email: 'john@smith.com',
     password: 'Password1$',
@@ -85,11 +94,24 @@ const input = {
     mustBe42: 42,
 } as unknown; // unknown type to simulate user input
 
-if (validator(input)) {
+try {
 
-    // input is now typed as User
-    input.favoriteColor; // FavoriteColor
+    if (validator(input)) {
 
+        // input is now typed as User
+        input.favoriteColor; // FavoriteColor
+
+    }
+
+} catch (e) {
+
+    if (e instanceof ValidationError) {
+
+        console.log(e.messages); // {}
+
+    }
+
+    throw e; // don't forget to rethrow your unhanded errors!
 }
 ```
 
@@ -241,6 +263,50 @@ Returns a predicate that checks if the input is a value of the specified enum.
 
 Returns a predicate that checks if the input passes a custom function.
 
+## Error handling
+
+When a predicate fails, it throws a `ValidationError` with a structured error message. It has a `messages` property that contains the error messages for each key that failed validation, and is of type `Record<string, string>`.
+
+Example:
+
+```typescript
+import {predicates as p, ValidationError} from '@aeroview-io/rtype';
+
+const validator = p.object({
+    email: p.email(),
+    password: p.password(),
+});
+
+try {
+    validator({
+        email: 'oopsie',
+        password: 'password',
+    });
+} catch (e) {
+    if (e instanceof ValidationError) {
+        console.log(e.messages); // {email: 'must be a valid email address'}
+    }
+    throw e; // don't forget to rethrow your unhanded errors!
+}
+```
+
+If you use a predicate that isn't an object, the value of the key will be 'root'. Example:
+
+```typescript
+import {predicates as p, ValidationError} from '@aeroview-io/rtype';
+
+const validator = p.email();
+
+try {
+    validator('oopsie');
+} catch (e) {
+    if (e instanceof ValidationError) {
+        console.log(e.messages); // {root: 'must be a valid email address'}
+    }
+    throw e; // don't forget to rethrow your unhanded errors!
+}
+```
+
 ## Contribution
 
 Please contribute to this project! Issue a PR against `main` and request review. Specifically, it would be great if you could help add predicates for common use-cases.
@@ -264,10 +330,10 @@ npm test
 
 ## Get better observability with Aeroview
 
-<a href="https://aeroview.io"><picture>
+<picture>
     <source srcset="docs/aeroview-logo-lockup.svg" media="(prefers-color-scheme: dark)">
     <source srcset="docs/aeroview-logo-lockup-dark.svg" media="(prefers-color-scheme: light)">
     <img src="docs//aeroview-logo-lockup-dark.svg" alt="Logo" style="max-width: 150px;margin: 0 0 10px">
-</picture></a>
+</picture>
 
 Aeroview is a developer-friendly, AI-powered observability platform that helps you monitor, troubleshoot, and optimize your applications. Get started for free at [https://aeroview.io](https://aeroview.io).
