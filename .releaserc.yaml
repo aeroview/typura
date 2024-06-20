@@ -29,6 +29,8 @@ plugins:
         noteKeywords:
           - "BREAKING CHANGE"
           - "BREAKING CHANGES"
+      writerOpts:
+        transform: import("@semantic-release/commit-analyzer/lib/writer").default
   - 
     - "@semantic-release/release-notes-generator"
     - preset: "angular"
