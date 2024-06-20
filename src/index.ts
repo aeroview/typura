@@ -32,3 +32,4 @@ Partial<Pick<T, OptionalKeys<T>>> extends infer O
     : never;
 
 export * as predicates from './predicates';
+export * from './lib/toResult';

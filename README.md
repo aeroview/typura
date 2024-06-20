@@ -119,8 +119,7 @@ try {
 ## Another example using the "Result" pattern
 
 ```typescript
-import {toResult} from '@aeroview-io/rtype/dist/lib/toResult';
-import {predicates as p, ValidationError} from '@aeroview-io/rtype';
+import {predicates as p, ValidationError, toResult} from '@aeroview-io/rtype';
 
 const validator = p.object({
     email: p.email(),
