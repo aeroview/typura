@@ -201,15 +201,6 @@ const isNumber: Pred<number> = (input: unknown): input is number => typeof input
 
 ## Predicate API
 
-Every function is based around the idea of a 'predicate.' A predicate is a function that takes an input (the user input/value in question) and returns a boolean.
-
-Every predicate function does the following:
-
-- Returns `true` if the input is valid
-- Throws a `ValidationError` if the input is invalid
-
-If you're using Typescript, predicates are also type guards and return a [Type Predicate](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates) that narrows the type of the input to the type that the predicate is checking for.
-
 ### `boolean(): Pred<boolean>` 
 
 Returns a predicate that checks if the input is a boolean.
