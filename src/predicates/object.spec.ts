@@ -1,8 +1,6 @@
 import {test} from 'hoare';
 import {object} from './object';
-import {toResult} from '../lib/toResult';
 import {ValidationError} from '..';
-import {removeStackFromErr} from '../lib/removeStackFromErr';
 import {number} from './number';
 import {string} from './string';
 import {optional} from './optional';
@@ -54,25 +52,22 @@ test('pred should throw ValidationError with both errors if both fail', (assert)
         age: number(),
     });
 
-    assert.equal(
-        removeStackFromErr(toResult(() => pred({
-            name: 42,
-            age: 'John',
-        }))[0]!),
-        removeStackFromErr(new ValidationError({
+    assert.throws(
+        () => pred({name: 42, age: 'John'}),
+        new ValidationError({
             name: 'must be a string',
             age: 'must be a number',
-        }))
+        })
     );
 
 });
 
 test('pred should throw if non-object passed as schema', (assert) => {
 
-    assert.equal(
+    assert.throws(
         // @ts-ignore
-        removeStackFromErr(toResult(() => object(Math.PI))[0]!),
-        removeStackFromErr(new Error('invalid schema, must be object'))
+        () => object(Math.PI),
+        new Error('invalid schema, must be object')
     );
 
 });
@@ -84,11 +79,11 @@ test('pred should throw if non-object passed to pred as value', (assert) => {
         age: number(),
     });
 
-    assert.equal(
-        removeStackFromErr(toResult(() => pred(Math.PI))[0]!),
-        removeStackFromErr(new ValidationError({
+    assert.throws(
+        () => pred(Math.PI),
+        new ValidationError({
             root: 'must be an object with keys name, age',
-        }))
+        })
     );
 
 });
@@ -106,23 +101,22 @@ test('nested validation errors should contain key.subkey as key', (assert) => {
             zip: string({len: {min: 5, max: 5}}),
         }),
     });
-    const [err] = toResult(() => nestedPred({
-        name: 'John',
-        age: 42,
-        address: {
-            line1: 5,
-            state: 'IL',
-            zip: '627041',
-        },
-    }));
 
-    assert.equal(
-        removeStackFromErr(err!),
-        removeStackFromErr(new ValidationError({
+    assert.throws(
+        () => nestedPred({
+            name: 'John',
+            age: 42,
+            address: {
+                line1: 5,
+                state: 'IL',
+                zip: '627041',
+            },
+        }),
+        new ValidationError({
             'address.line1': 'must be a string',
             'address.city': 'must be a string',
             'address.zip': 'must be at most 5 characters',
-        }))
+        })
     );
 
 });

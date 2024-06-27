@@ -32,13 +32,13 @@ Simple and extensible runtime input validation for TS/JS, written in TS. Sponsor
 
 - Email, urls, uuids, enums, passwords, and more
 
-## Installation
+# Installation
 
 ```bash
 npm i @aeroview-io/rtype
 ```
 
-## Table of contents
+# Table of contents
 
 - [Example usage](#example-usage)
 - [The "Result" pattern](#another-example-using-the-result-pattern)
@@ -49,7 +49,9 @@ npm i @aeroview-io/rtype
 - [Contribution](#contribution)
 - [Sponsorship](#get-better-observability-with-aeroview)
  
-## Example usage
+# Usage
+
+## Example
 
 ```typescript
 import {predicates as p, Infer} from '@aeroview-io/rtype';
@@ -109,7 +111,7 @@ try {
 }
 ```
 
-## Another example using the "Result" pattern
+## Using the "Result" pattern
 
 ```typescript
 import {predicates as p, ValidationError, toResult} from '@aeroview-io/rtype';
@@ -181,13 +183,13 @@ validator({
 */
 ```
 
-## Type API
+# Type API
 
-### `Infer<T>`
+## `Infer<T>`
 
 Infer is a utility type that extracts the type of the input from a predicate function. See the [example above](#example-usage) for usage.
 
-### `Pred<T>` 
+## `Pred<T>` 
 
 A type gaurd that takes an input and returns a boolean. It is used to narrow the type of the input to the type that the predicate is checking for. Every predicate function in our API returns a `Pred<T>`.
 
@@ -199,13 +201,17 @@ import {Pred} from '@aeroview-io/rtype';
 const isNumber: Pred<number> = (input: unknown): input is number => typeof input === 'number';
 ```
 
-## Predicate API
+# Predicate API
 
-### `boolean(): Pred<boolean>` 
+## boolean
+
+`boolean(): Pred<boolean>` 
 
 Returns a predicate that checks if the input is a boolean.
 
-### `number(opts?: Options): Pred<number>`
+## number
+
+`number(opts?: Options): Pred<number>`
 
 Returns a predicate that checks if the input is a number.
 
@@ -220,7 +226,9 @@ import {number} from '@aeroview-io/rtype/dist/predicates';
 const isNumber = number({range: {min: 0, max: 100}});
 ```
 
-### `string(opts?: Options): Pred<string>`
+## string
+
+`string(opts?: Options): Pred<string>`
 
 Returns a predicate that checks if the input is a string.
 
@@ -228,49 +236,38 @@ Options:
 
 - `len`: `{min: number, max: number} | undefined` - checks if the input is within the specified length
 
-### `email(): Pred<string>`
+## object
 
-Returns a predicate that checks if the input is a valid email address.
-
-### `password(): Pred<string>`
-
-Returns a predicate that checks if the input is a valid password. A valid password must:
-
-- Be at least 8 characters long
-- Include at least one uppercase letter
-- Include at least one lowercase letter
-- Include at least one number
-- Include at least one special character
-
-### `uuid(): Pred<string>`
-
-Returns a predicate that checks if the input is a valid UUID v4.
-
-### `url(opts?: Options): Pred<string>`
-
-Returns a predicate that checks if the input is a valid URL.
-
-Options:
-
-- `allowLocalhost` - allows localhost URLs, default is `false`
-
-### `optional<T>(predicate: Pred<T>): Pred<T | undefined>`
-
-Returns a predicate that checks if the input is either the type of the predicate or `undefined`.
-
-### `object<T>(predicates: {[K in keyof T]: Pred<T[K]>}): Pred<T>`
+`object<T>(predicates: {[K in keyof T]: Pred<T[K]>}): Pred<T>`
 
 Returns a predicate that checks if the input is an object with the specified keys and values.
 
-### `enumValue<T>(enumType: T): Pred<T[keyof T]>`
+## array
+`array<T>(predicate: Pred<T>): Pred<T[]>`
+
+Returns a predicate that checks if the input is an array of the specified type.
+
+## enum
+
+`enumValue<T>(enumType: T): Pred<T[keyof T]>`
 
 Returns a predicate that checks if the input is a value of the specified enum.
 
-### `custom<T>(predicate: (input: unknown) => boolean, message: string): Pred<T>`
+## optional
+
+`optional<T>(predicate: Pred<T>): Pred<T | undefined>`
+
+Returns a predicate that checks if the input is either the type of the predicate or `undefined`.
+
+## custom
+
+`custom<T>(predicate: (input: unknown) => boolean, message: string): Pred<T>`
 
 Returns a predicate that checks if the input passes a custom function.
 
-### `chain<T>(...predicates: Pred<T>[]): Pred<T>`
+## chain
+
+`chain<T>(...predicates: Pred<T>[]): Pred<T>`
 
 Returns a predicate that chains multiple predicates together. The input must pass all predicates. Predicates are checked in order. If a predicate fails, the rest of the predicates are not checked. Predicates must be of the same type `T`.
 
@@ -285,32 +282,46 @@ const isSchoolEmail = chain(
 );
 ```
 
-## Contribution
+## email
 
-Please contribute to this project! We welcome all contributions. Here's how you can help:
+`email(): Pred<string>`
 
-- Submit an issue with a feature request or bug report.
-- Issue a PR against `main` and request review.
-- Ask/answer questions in the Issues/PR's.
+Returns a predicate that checks if the input is a valid email address.
 
-Before you submit a PR, please make sure to do the following:
+## password
 
-- Please test your work thoroughly.
-- Make sure all tests pass with appropriate coverage.
+`password(): Pred<string>`
 
-### How to build locally
+Returns a predicate that checks if the input is a valid password. A valid password must:
 
-```bash
-npm i
-```
+- Be at least 8 characters long
+- Include at least one uppercase letter
+- Include at least one lowercase letter
+- Include at least one number
+- Include at least one special character
 
-### Running tests
+## uuid
+`uuid(): Pred<string>`
 
-```shell script
-npm test
-```
+Returns a predicate that checks if the input is a valid UUID v4.
 
-## Get better observability with Aeroview
+## url
+`url(opts?: Options): Pred<string>`
+
+Returns a predicate that checks if the input is a valid URL.
+
+Options:
+
+- `allowLocalhost` - allows localhost URLs, default is `false`
+
+## Support, Feedback, and Contributions
+
+- Star this repo if you like it!
+- Submit an [issue](https://github.com/mhweiner/jsout/issues) with your problem, feature request or bug report
+- Issue a PR against `main` and request review. Make sure all tests pass and coverage is good.
+- Write about `rtype` in your blog, tweet about it, or share it with your friends!
+
+## Sponsors
 
 <picture>
     <source srcset="docs/aeroview-logo-lockup.svg" media="(prefers-color-scheme: dark)">

@@ -23,10 +23,12 @@ Pred<InferShape<T>> {
 
             if (isInvalid && Object.keys(err.messages).length === 1 && err.messages.root) {
 
+                // root error
                 acc[key] = err.messages.root;
 
             } else if (isInvalid) {
 
+                // nested errors
                 Object.entries(err.messages).forEach(([subKey, subMessage]) => {
 
                     acc[`${key}.${subKey}`] = subMessage;

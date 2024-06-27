@@ -1,8 +1,6 @@
 import {test} from 'hoare';
 import {uuid} from './uuid';
-import {removeStackFromErr} from '../lib/removeStackFromErr';
 import {ValidationError} from '..';
-import {toResult} from '../lib/toResult';
 
 test('pred should return true if value is a valid uuid', (assert) => {
 
@@ -19,11 +17,11 @@ test('pred should return true if value is a valid uuid', (assert) => {
 test('pred should throw ValidationError for invalid value', (assert) => {
 
     const pred = uuid();
-    const expectedErr = removeStackFromErr(new ValidationError({
+    const expectedErr = new ValidationError({
         root: 'must be a valid uuid',
-    }));
+    });
 
-    assert.equal(removeStackFromErr(toResult(() => pred('aefadsfasdfasdf'))[0]!), expectedErr);
-    assert.equal(removeStackFromErr(toResult(() => pred(42))[0]!), expectedErr);
+    assert.throws(() => pred('aefadsfasdfasdf'), expectedErr);
+    assert.throws(() => pred(42), expectedErr);
 
 });

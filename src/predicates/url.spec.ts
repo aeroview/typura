@@ -1,7 +1,5 @@
 import {test} from 'hoare';
-import {toResult} from '../lib/toResult';
 import {ValidationError} from '..';
-import {removeStackFromErr} from '../lib/removeStackFromErr';
 import {url} from './url';
 
 test('pred should return true for valid urls (no localhost)', (assert) => {
@@ -38,36 +36,36 @@ test('pred should return true for valid urls (localhost allowed)', (assert) => {
 test('pred should throw ValidationError for invalid url', (assert) => {
 
     const pred = url();
-    const expectedErr = removeStackFromErr(new ValidationError({
+    const expectedErr = new ValidationError({
         root: 'must be a valid URL',
-    }));
+    });
 
-    assert.equal(
-        removeStackFromErr(toResult(() => pred(42))[0]!),
+    assert.throws(
+        () => pred(42),
         expectedErr,
     );
-    assert.equal(
-        removeStackFromErr(toResult(() => pred('false'))[0]!),
+    assert.throws(
+        () => pred('false'),
         expectedErr,
     );
-    assert.equal(
-        removeStackFromErr(toResult(() => pred('localhost'))[0]!),
+    assert.throws(
+        () => pred('localhost'),
         expectedErr,
     );
-    assert.equal(
-        removeStackFromErr(toResult(() => pred('file://blah'))[0]!),
+    assert.throws(
+        () => pred('file://blah'),
         expectedErr,
     );
-    assert.equal(
-        removeStackFromErr(toResult(() => pred('http://blah.'))[0]!),
+    assert.throws(
+        () => pred('http://blah.'),
         expectedErr,
     );
-    assert.equal(
-        removeStackFromErr(toResult(() => pred('http://localhost'))[0]!),
+    assert.throws(
+        () => pred('http://localhost'),
         expectedErr,
     );
-    assert.equal(
-        removeStackFromErr(toResult(() => pred('localhost:3000'))[0]!),
+    assert.throws(
+        () => pred('localhost:3000'),
         expectedErr,
     );
 

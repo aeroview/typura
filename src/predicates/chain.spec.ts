@@ -3,8 +3,6 @@ import {chain} from './chain';
 import {ValidationError} from '..';
 import {string} from './string';
 import {custom} from './custom';
-import {toResult} from '../lib/toResult';
-import {removeStackFromErr} from '../lib/removeStackFromErr';
 
 test('pred should return true for empty chain', (assert) => {
 
@@ -33,51 +31,35 @@ test('pred should throw ValidationError if any predicates in chain throw', (asse
         custom<string>((value: string) => value.includes('o'), 'must include letter o'),
     );
 
-    // not a string
-    const [errNotString] = toResult(() => pred(42));
-    const expctedNotStringErr = new ValidationError({
-        root: 'must be a string',
-    });
-
-    assert.equal(
-        removeStackFromErr(errNotString!),
-        removeStackFromErr(expctedNotStringErr),
+    assert.throws(
+        () => pred(42),
+        new ValidationError({
+            root: 'must be a string',
+        }),
         'must be a string'
     );
 
-    // too short
-    const [errTooShort] = toResult(() => pred('hi'));
-    const expectedTooShortErr = new ValidationError({
-        root: 'must be at least 5 characters',
-    });
-
-    assert.equal(
-        removeStackFromErr(errTooShort!),
-        removeStackFromErr(expectedTooShortErr),
+    assert.throws(
+        () => pred('hi'),
+        new ValidationError({
+            root: 'must be at least 5 characters',
+        }),
         'too short'
     );
 
-    // too long
-    const [errTooLong] = toResult(() => pred('blasdfasdfasdf'));
-    const expectedTooLongErr = new ValidationError({
-        root: 'must be at most 10 characters',
-    });
-
-    assert.equal(
-        removeStackFromErr(errTooLong!),
-        removeStackFromErr(expectedTooLongErr),
+    assert.throws(
+        () => pred('blasdfasdfasdf'),
+        new ValidationError({
+            root: 'must be at most 10 characters',
+        }),
         'too long'
     );
 
-    // missing letter o
-    const [errMissingO] = toResult(() => pred('greetings'));
-    const expectedMissingOErr = new ValidationError({
-        root: 'must include letter o',
-    });
-
-    assert.equal(
-        removeStackFromErr(errMissingO!),
-        removeStackFromErr(expectedMissingOErr),
+    assert.throws(
+        () => pred('greetings'),
+        new ValidationError({
+            root: 'must include letter o',
+        }),
         'missing letter o'
     );
 

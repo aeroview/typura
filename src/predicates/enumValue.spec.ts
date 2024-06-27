@@ -1,7 +1,5 @@
 import {test} from 'hoare';
-import {toResult} from '../lib/toResult';
 import {ValidationError} from '..';
-import {removeStackFromErr} from '../lib/removeStackFromErr';
 import {enumValue} from './enumValue';
 
 enum TestEnum {
@@ -9,9 +7,9 @@ enum TestEnum {
     bar = 'bar',
     baz = 'baz'
 }
-const expectedErr = removeStackFromErr(new ValidationError({
+const expectedErr = new ValidationError({
     root: 'must be a valid enum value',
-}));
+});
 
 test('pred should return true if value is a valid value of the enum', (assert) => {
 
@@ -27,8 +25,8 @@ test('pred should throw ValidationError for invalid value', (assert) => {
 
     const pred = enumValue(TestEnum);
 
-    assert.equal(removeStackFromErr(toResult(() => pred('gak'))[0]!), expectedErr, 'gak');
-    assert.equal(removeStackFromErr(toResult(() => pred('blah'))[0]!), expectedErr, 'blah');
+    assert.throws(() => pred('gak'), expectedErr, 'gak');
+    assert.throws(() => pred('blah'), expectedErr, 'blah');
 
 });
 
