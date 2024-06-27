@@ -261,9 +261,21 @@ Returns a predicate that checks if the input is either the type of the predicate
 
 ## custom
 
-`custom<T>(predicate: (input: unknown) => boolean, message: string): Pred<T>`
+`custom<T>(predicate: (input: T) => boolean, message: string): Pred<T>`
 
 Returns a predicate that checks if the input passes a custom function.
+
+Example:
+
+```typescript
+import {custom} from '@aeroview-io/rtype/dist/predicates';
+
+const is42 = custom((input: number) => input === 42, 'must be 42');
+
+is42(42); // true
+is42(43); // throws ValidationError: 'must be 42'
+
+```
 
 ## chain
 
