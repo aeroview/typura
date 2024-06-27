@@ -40,8 +40,8 @@ npm i @aeroview-io/rtype
 
 # Table of contents
 
-- [Example usage](#example-usage)
-- [The "Result" pattern](#another-example-using-the-result-pattern)
+- [Example](#example)
+- [The "Result" pattern](#using-the-result-pattern)
 - [Taking advantage of tree-shaking](#taking-advantage-of-tree-shaking)
 - [Nested objects](#nested-objects)
 - [Type API](#type-api)
