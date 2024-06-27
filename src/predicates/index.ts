@@ -10,3 +10,4 @@ export * from './url';
 export * from './password';
 export * from './enumValue';
 export * from './uuid';
+export * from './array';
