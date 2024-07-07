@@ -238,9 +238,13 @@ Options:
 
 ## object
 
-`object<T>(predicates: {[K in keyof T]: Pred<T[K]>}): Pred<T>`
+`object<T>(predicates: {[K in keyof T]: Pred<T[K]>}, opts?: Options): Pred<T>`
 
 Returns a predicate that checks if the input is an object with the specified keys and values.
+
+Options:
+
+- `allowUnknownKeys` - allows unspecified/unexpected keys in the object, default is `false`
 
 ## array
 `array<T>(predicate: Pred<T>): Pred<T[]>`

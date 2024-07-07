@@ -120,3 +120,41 @@ test('nested validation errors should contain key.subkey as key', (assert) => {
     );
 
 });
+
+test('should throw if any unknown keys are present', (assert) => {
+
+    const pred = object({
+        name: string(),
+        age: number(),
+    });
+
+    assert.throws(
+        () => pred({
+            name: 'John',
+            age: 42,
+            blub: 'gurgle',
+        }),
+        new ValidationError({
+            blub: 'unknown key',
+        })
+    );
+
+});
+
+test('should not throw if any unknown keys are present and allowUnknownKeys is true', (assert) => {
+
+    const pred = object({
+        name: string(),
+        age: number(),
+    }, {allowUnknownKeys: true});
+
+    assert.equal(
+        pred({
+            name: 'John',
+            age: 42,
+            blub: 'gurgle',
+        }),
+        true
+    );
+
+});

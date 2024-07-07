@@ -1,9 +1,15 @@
 import {InferShape, Pred, ValidationError} from '..';
 import {toResult} from '../lib/toResult';
 
-export function object
-<T extends Record<string, Pred<any>>>(schema: T):
-Pred<InferShape<T>> {
+type ObjectOptions = {
+    allowUnknownKeys?: boolean
+};
+
+// eslint-disable-next-line max-lines-per-function
+export function object<T extends Record<string, Pred<any>>>(
+    schema: T,
+    options?: ObjectOptions
+): Pred<InferShape<T>> {
 
     if (typeof schema !== 'object') throw new Error('invalid schema, must be object');
 
@@ -15,6 +21,7 @@ Pred<InferShape<T>> {
 
         }
 
+        // go through each key in the schema
         const messages: Record<string, string> = Object.entries(schema)
             .reduce<Record<string, string>>((acc, [key, predicate]) => {
 
@@ -40,6 +47,21 @@ Pred<InferShape<T>> {
             return acc;
 
         }, {});
+
+        // go through each key in the value
+        if (!options?.allowUnknownKeys) {
+
+            Object.keys(value as Record<string, unknown>).forEach((key) => {
+
+                if (!schema[key]) {
+
+                    messages[key] = 'unknown key';
+
+                }
+
+            });
+
+        }
 
         if (Object.keys(messages).length > 0) {
 
