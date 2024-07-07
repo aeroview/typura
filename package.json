@@ -1,6 +1,6 @@
 {
   "name": "@aeroview-io/rtype",
-  "version": "0.0.0-dev",
+  "version": "0.0.0-autorel",
   "description": "Simple and extensible runtime input validation for TS/JS, written in TS.",
   "keywords": [
     "joi",
@@ -49,7 +49,6 @@
     "c8": "^9.1.0",
     "eslint": "^8.39.0",
     "hoare": "^3.1.3",
-    "semantic-release": "^24.0.0",
     "ts-node": "^10.9.1",
     "typescript": "^5.0.4"
   }
