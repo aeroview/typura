@@ -1,17 +1,18 @@
 <picture>
-    <source srcset="docs/rtype.svg" media="(prefers-color-scheme: dark)">
-    <source srcset="docs/rtype-dark.svg" media="(prefers-color-scheme: light)">
-    <img src="docs/rtype-dark.svg" alt="Logo" style="margin: 0 0 10px" size="250">
+    <source srcset="docs/typura.svg" media="(prefers-color-scheme: dark)">
+    <source srcset="docs/typura.svg" media="(prefers-color-scheme: light)">
+    <img src="docs/typura.svg" alt="Logo" style="margin: 0 0 10px" size="250">
 </picture>
 
----
-
-[![build status](https://github.com/aeroview/rtype/actions/workflows/release.yml/badge.svg)](https://github.com/mhweiner/express-typed-rpc/actions)
-[![semantic-release](https://img.shields.io/badge/semantic--release-e10079?logo=semantic-release)](https://github.com/semantic-release/semantic-release)
-[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
+[![build status](https://github.com/aeroview/typura/actions/workflows/release.yml/badge.svg)](https://github.com/mhweiner/express-typed-rpc/actions)
 [![SemVer](https://img.shields.io/badge/SemVer-2.0.0-blue)]()
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
+![Code Coverage](https://img.shields.io/badge/Code%20Coverage%20-%20100%25%20-%20%2331c352)
 
-Simple and extensible runtime input validation for TS/JS, written in TS. Sponsored by https://aeroview.io
+
+Simple and extensible runtime input validation for TS/JS, written in TS, fried in batter.
+
+Sponsored by https://aeroview.io
 
 **🚀 Fast & reliable performance**
 
@@ -35,7 +36,7 @@ Simple and extensible runtime input validation for TS/JS, written in TS. Sponsor
 # Installation
 
 ```bash
-npm i @aeroview-io/rtype
+npm i typura
 ```
 
 # Table of contents
@@ -54,7 +55,7 @@ npm i @aeroview-io/rtype
 ## Example
 
 ```typescript
-import {predicates as p, Infer} from '@aeroview-io/rtype';
+import {predicates as p, Infer} from 'typura';
 
 enum FavoriteColor {
     Red = 'red',
@@ -114,7 +115,7 @@ try {
 ## Using the "Result" pattern
 
 ```typescript
-import {predicates as p, ValidationError, toResult} from '@aeroview-io/rtype';
+import {predicates as p, ValidationError, toResult} from 'typura';
 
 const validator = p.object({
     email: p.email(),
@@ -140,7 +141,7 @@ R-type is tree-shakeable. This means that you can import only the predicates you
 This is useful for frontend applications where bundle size is a concern. As a bonus, this allows our repo to contain a large number of predicates for convenience without bloating your bundle. Best of both worlds!
 
 ```typescript
-import {email} from '@aeroview-io/rtype/dist/predicates';
+import {email} from 'typura/dist/predicates';
 
 const isEmail = email();
 ```
@@ -150,7 +151,7 @@ const isEmail = email();
 You can nest objects by using the `object` predicate. This allows you to create complex validation rules for nested objects. The `ValidationError` object will be flattened to include the nested object keys with a dot separator.
 
 ```typescript
-import {predicates as p, Infer} from '@aeroview-io/rtype';
+import {predicates as p, Infer} from 'typura';
 
 const validator = p.object({
     email: p.email(),
@@ -196,7 +197,7 @@ A type gaurd that takes an input and returns a boolean. It is used to narrow the
 Example:
 
 ```typescript
-import {Pred} from '@aeroview-io/rtype';
+import {Pred} from 'typura';
 
 const isNumber: Pred<number> = (input: unknown): input is number => typeof input === 'number';
 ```
@@ -222,7 +223,7 @@ Options:
 Example:
 
 ```typescript
-import {number} from '@aeroview-io/rtype/dist/predicates';
+import {number} from 'typura/dist/predicates';
 const isNumber = number({range: {min: 0, max: 100}});
 ```
 
@@ -272,7 +273,7 @@ Returns a predicate that checks if the input passes a custom function.
 Example:
 
 ```typescript
-import {custom} from '@aeroview-io/rtype/dist/predicates';
+import {custom} from 'typura/dist/predicates';
 
 const is42 = custom((input: number) => input === 42, 'must be 42');
 
@@ -290,7 +291,7 @@ Returns a predicate that chains multiple predicates together. The input must pas
 Example:
 
 ```typescript
-import {chain, email, custom} from '@aeroview-io/rtype/dist/predicates';
+import {chain, email, custom} from 'typura/dist/predicates';
 
 const isSchoolEmail = chain(
     email(), 
@@ -335,7 +336,7 @@ Options:
 - Star this repo if you like it!
 - Submit an [issue](https://github.com/mhweiner/jsout/issues) with your problem, feature request or bug report
 - Issue a PR against `main` and request review. Make sure all tests pass and coverage is good.
-- Write about `rtype` in your blog, tweet about it, or share it with your friends!
+- Write about `typura` in your blog, tweet about it, or share it with your friends!
 
 ## Sponsors
 
