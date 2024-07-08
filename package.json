@@ -1,7 +1,7 @@
 {
-  "name": "shapr",
+  "name": "typura",
   "version": "0.0.0-autorel",
-  "description": "Simple and extensible runtime input validation for TS/JS, written in TS.",
+  "description": "Simple and extensible runtime input validation for TS/JS, written in TS, fried in batter.",
   "keywords": [
     "joi",
     "zod",
@@ -18,9 +18,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/aeroview/shapr.git"
+    "url": "git+https://github.com/aeroview/typura.git"
   },
-  "homepage": "https://github.com/aeroview/shapr",
+  "homepage": "https://github.com/aeroview/typura",
   "license": "MIT",
   "author": "Marc H. Weiner <marc@aeroview.io> (https://aeroview.io)",
   "publishConfig": {
