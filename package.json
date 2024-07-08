@@ -1,5 +1,5 @@
 {
-  "name": "@aeroview-io/rtype",
+  "name": "shapr",
   "version": "0.0.0-autorel",
   "description": "Simple and extensible runtime input validation for TS/JS, written in TS.",
   "keywords": [
@@ -18,9 +18,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/aeroview/rtype.git"
+    "url": "git+https://github.com/aeroview/shapr.git"
   },
-  "homepage": "https://github.com/aeroview/rtype",
+  "homepage": "https://github.com/aeroview/shapr",
   "license": "MIT",
   "author": "Marc H. Weiner <marc@aeroview.io> (https://aeroview.io)",
   "publishConfig": {
