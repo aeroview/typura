@@ -3,9 +3,9 @@ import {ValidationError} from '..';
 import {enumValue} from './enumValue';
 
 enum TestEnum {
-    foo = 'foo',
-    bar = 'bar',
-    baz = 'baz'
+    Foo = 'foo',
+    Bar = 'bar',
+    Baz = 'baz'
 }
 const expectedErr = new ValidationError({
     root: 'must be a valid enum value',

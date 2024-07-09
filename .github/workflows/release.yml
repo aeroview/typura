@@ -31,8 +31,6 @@ jobs:
           path: node_modules
           key: ${{runner.os}}-node-${{hashFiles('package-lock.json')}}
       - run: npm ci
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
       - run: npm run lint
       - run: npm test
       - run: npx autorel@^2
