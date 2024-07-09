@@ -9,7 +9,7 @@
 [![SemVer](https://img.shields.io/badge/SemVer-2.0.0-blue)]()
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 
-Simple and extensible runtime input validation for TS/JS, written in TS, fried in batter.
+Simple, extensible, and reliable runtime input validation for TS/JS.
 
 Sponsored by https://aeroview.io
 
@@ -20,17 +20,17 @@ Sponsored by https://aeroview.io
 - No dependencies
 - 100% test coverage
 
-**😀 User-friendly & defensive**
+**😀 User-friendly & powerful**
 
 - Native Typescript support with readable types
 - Easy-to-use declarative & functional API
-- Client-friendly, structured error messages
-- Works great on the server and in the browser
+- Client-friendly, predictable, & structured error messages
+- Works great both on the server and in the browser
 - Composable and extensible with custom predicates
 
 **🔋 Batteries included**
 
-- Email, urls, uuids, enums, passwords, and more
+- Built-in support for email, urls, uuids, regex, enums, passwords, and more!
 
 # Installation
 
@@ -278,6 +278,22 @@ const is42 = custom((input: number) => input === 42, 'must be 42');
 
 is42(42); // true
 is42(43); // throws ValidationError: 'must be 42'
+
+```
+
+## regex
+
+`regex(exp: RegExp, message: string): Pred<string>`
+
+Returns a predicate that checks if the input passes the provided regular expression.
+
+Example:
+
+```typescript
+import {regex} from 'typura/dist/predicates';
+
+regex(/^[a-z]+$/, 'not a-z')('abc'); // true
+regex(/^[a-z]+$/, 'not a-z')('123'); // throws ValidationError: 'not a-z'
 
 ```
 

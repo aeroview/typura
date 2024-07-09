@@ -1,7 +1,7 @@
 {
   "name": "typura",
   "version": "0.0.0-autorel",
-  "description": "Simple and extensible runtime input validation for TS/JS, written in TS, fried in batter.",
+  "description": "Simple, extensible, and reliable runtime input validation for TS/JS.",
   "keywords": [
     "joi",
     "zod",
