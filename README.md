@@ -46,6 +46,7 @@ npm i typura
 - [Nested objects](#nested-objects)
 - [Type API](#type-api)
 - [Predicate API](#predicate-api)
+- [Advanced Usage](#advanced-usage)
 - [Contribution](#contribution)
 - [Sponsorship](#get-better-observability-with-aeroview)
  
@@ -346,14 +347,35 @@ Options:
 
 - `allowLocalhost` - allows localhost URLs, default is `false`
 
-## Support, Feedback, and Contributions
+# Advanced Usage
+
+## Defining validation at runtime while using static `Infer` type at compile-time
+
+You can use the `custom()` predicate to define a predicate at runtime, while still using the `Infer` type at compile-time. This is useful when you need to define a predicate based on user input or configuration.
+
+```typescript
+import {predicates as p, Infer} from 'typura';
+
+const validator = p.custom((input: string) => {
+    
+    const regEx = getRegExFromSomewhere();
+
+    return p.regex(regEx, 'invalid regex')(input);
+
+});
+
+type Input = Infer<typeof validator>; // string
+
+```
+
+# Support, Feedback, and Contributions
 
 - Star this repo if you like it!
 - Submit an [issue](https://github.com/mhweiner/jsout/issues) with your problem, feature request or bug report
 - Issue a PR against `main` and request review. Make sure all tests pass and coverage is good.
 - Write about `typura` in your blog, tweet about it, or share it with your friends!
 
-## Sponsors
+# Sponsors
 
 <picture>
     <source srcset="docs/aeroview-logo-lockup.svg" media="(prefers-color-scheme: dark)">
