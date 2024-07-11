@@ -249,9 +249,13 @@ Options:
 - `allowUnknownKeys` - allows unspecified/unexpected keys in the object, default is `false`
 
 ## array
-`array<T>(predicate: Pred<T>): Pred<T[]>`
+`array<T>(predicate: Pred<T>, opts?: Options): Pred<T[]>`
 
 Returns a predicate that checks if the input is an array of the specified type.
+
+Options:
+
+- `len?`: `{min: number, max: number}` - checks if the array is within the specified length
 
 ## enum
 

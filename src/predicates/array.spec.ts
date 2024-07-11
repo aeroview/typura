@@ -41,3 +41,39 @@ test('pred should throw ValidationError for invalid value', (assert) => {
     );
 
 });
+
+// eslint-disable-next-line max-lines-per-function
+test('with specified optional length range', (assert) => {
+
+    assert.equal(
+        array(number(), {len: {min: 2, max: 2}})([1, 2]),
+        true,
+        'should not throw if within range'
+    );
+    assert.equal(
+        array(number(), {len: {max: 5}})([]),
+        true,
+        'should not throw if empty but min is not specified'
+    );
+    assert.equal(
+        array(number(), {len: {min: 5}})([1, 1, 1, 1, 1]),
+        true,
+        'should not throw if meets min and there is no max'
+    );
+    assert.throws(
+        () => array(number(), {len: {min: 1}})([]),
+        new ValidationError({root: 'must have at least 1 item(s)'}),
+        'should throw if does not meet min'
+    );
+    assert.throws(
+        () => array(number(), {len: {max: 1}})([1, 2]),
+        new ValidationError({root: 'must have at most 1 item(s)'}),
+        'should throw if does not meet max'
+    );
+    assert.throws(
+        () => array(number(), {len: {min: 2, max: 2}})([1, 2, 3]),
+        new ValidationError({root: 'must have exactly 2 item(s)'}),
+        'should throw with exact error if min and max are the same and it is out of range'
+    );
+
+});
