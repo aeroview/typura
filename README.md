@@ -25,7 +25,7 @@ Sponsored by https://aeroview.io
 
 - Native Typescript support with readable types
 - Easy-to-use declarative & functional API
-- Structured error messages that are easy to parse on both server & client
+- [Structured error messages](#validationerror) that are easy to parse on both server & client
 - Works great both on the server and in the browser
 - Composable and extensible with custom predicates
 
@@ -47,6 +47,7 @@ npm i typura
 - [Nested objects](#nested-objects)
 - [Type API](#type-api)
 - [Predicate API](#predicate-api)
+- [ValidationError](#validationerror)
 - [Advanced Usage](#advanced-usage)
 - [Contribution](#contribution)
 - [Sponsorship](#get-better-observability-with-aeroview)
@@ -392,14 +393,6 @@ Error [ValidationError]: ValidationError
     email: 'must be a valid email address', 
     password: 'must include at least one uppercase letter' 
   }
-}
-```
-
-```bash
-Error [ValidationError]: ValidationError
-    at [...]
-{
-  messages: { root: 'must be a number' }
 }
 ```
 
