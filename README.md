@@ -25,7 +25,7 @@ Sponsored by https://aeroview.io
 
 - Native Typescript support with readable types
 - Easy-to-use declarative & functional API
-- Client-friendly, predictable, & structured error messages
+- Structured error messages that are easy to parse on both server & client
 - Works great both on the server and in the browser
 - Composable and extensible with custom predicates
 
@@ -351,6 +351,57 @@ Returns a predicate that checks if the input is a valid URL.
 Options:
 
 - `allowLocalhost` - allows localhost URLs, default is `false`
+
+# ValidationError
+
+Error messages are structured and designed to be easy to parse.
+
+When validation fails, it throws a `ValidationError` with a property `messages`. Within `messages` would be a key-value pair object of all validation errors, including any nested ones. If you are operating on "naked" values, ie, not within an `object` predicate, the key will be `root`. Here are a few examples:
+
+### Number (naked)
+
+```typescript
+p.number()('blah');
+```
+
+```bash
+Error [ValidationError]: ValidationError
+    at [...]
+{
+  messages: { root: 'must be a number' }
+}
+```
+
+### Object
+
+```typescript
+p.object({
+    email: p.email(),
+    password: p.password(),
+})({
+    email: 'blah',
+    password: 'password',
+});
+```
+
+```bash
+Error [ValidationError]: ValidationError
+    at [...]
+{
+  messages: { 
+    email: 'must be a valid email address', 
+    password: 'must include at least one uppercase letter' 
+  }
+}
+```
+
+```bash
+Error [ValidationError]: ValidationError
+    at [...]
+{
+  messages: { root: 'must be a number' }
+}
+```
 
 # Advanced Usage
 
