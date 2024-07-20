@@ -14,7 +14,7 @@ Simple, extensible, and reliable runtime input validation for TS/JS.
 
 Sponsored by https://aeroview.io
 
-**🚀 Fast & reliable performance**
+**🚀 Fast & reliable performance** 
 
 - Faster than joi, yup, and zod (benchmarks coming soon)
 - Supports tree-shaking via ES Modules so you only bundle what you use
