@@ -341,6 +341,32 @@ isEmailOrEvenNumber(3); // throws ValidationError: 'must be an even number'
 type IsEmailOrEvenNumber = Infer<typeof isEmailOrEvenNumber>; // string | number
 ```
 
+## literal
+
+`literal<T>(expected: T, errorMessage: string): Pred<T>`
+
+Returns a predicate that checks if the input is equal to the expected value.
+
+Example:
+
+```typescript
+import {literal, union} from 'typura/dist/predicates';
+
+const is42 = literal(42);
+
+// An example combining literal and union
+
+const isBlueOrNull = union([
+    literal('blue'),
+    literal(null)
+], 'must be blue or null');
+
+isBlueOrNull('blue'); // true
+isBlueOrNull(null); // true
+isBlueOrNull('red'); // throws ValidationError: 'must be blue or null'
+```
+
+
 ## email
 
 `email(): Pred<string>`

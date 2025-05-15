@@ -13,3 +13,4 @@ export * from './uuid';
 export * from './array';
 export * from './regex';
 export * from './union';
+export * from './literal';
