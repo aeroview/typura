@@ -321,6 +321,26 @@ const isSchoolEmail = chain(
 );
 ```
 
+## union
+
+`union<T>(...predicates: Pred<T>[]): Pred<T>`
+
+Returns a predicate that checks if the input passes any of the given predicates.
+
+Example:
+
+```typescript
+import {union, email, custom} from 'typura/dist/predicates';
+
+const isEmailOrEvenNumber = union(email(), custom((input: number) => input % 2 === 0, 'must be an even number'));
+
+isEmailOrEvenNumber('john@smith.com'); // true
+isEmailOrEvenNumber(2); // true
+isEmailOrEvenNumber(3); // throws ValidationError: 'must be an even number'
+
+type IsEmailOrEvenNumber = Infer<typeof isEmailOrEvenNumber>; // string | number
+```
+
 ## email
 
 `email(): Pred<string>`

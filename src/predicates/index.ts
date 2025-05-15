@@ -12,3 +12,4 @@ export * from './enumValue';
 export * from './uuid';
 export * from './array';
 export * from './regex';
+export * from './union';
