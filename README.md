@@ -323,7 +323,7 @@ const isSchoolEmail = chain(
 
 ## union
 
-`union<T>(...predicates: Pred<T>[]): Pred<T>`
+`union<T extends readonly Pred<any>[]>(predicates: [...T], errorMessage: string): (value: unknown) => value is ExtractGuardedType<T[number]>`
 
 Returns a predicate that checks if the input passes any of the given predicates.
 
